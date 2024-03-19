@@ -112,7 +112,7 @@ nav .fa{
         padding: 30px;
     }
 }
-.products{
+.course{
     width: 80%;
     margin: auto;
     text-align: center;
@@ -157,7 +157,7 @@ h3{
         flex-direction: column;
     }
 }
-.range{
+.campus{
     width: 80%;
     margin: auto;
     text-align: center;
@@ -202,7 +202,7 @@ h3{
     bottom: 49%;
     opacity: 1;
 }
-.services{
+.facilities{
     width: 80%;
     margin: auto;
     text-align: center;
@@ -262,8 +262,26 @@ h3{
         margin-right: 15px;
     }
 }
-
-.about{
+.developer{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(165, 129, 154, 0.806);
+    margin: 1em;
+    padding: 1.5em;
+    text-align: center;
+}
+.developer img{
+    border-radius: 10%;
+    max-width: 100px;
+    height: auto;
+}
+.developer h2{
+    margin-bottom: 0.5em;
+}
+.developer p{
+    color: #666;
+}
+.cta{
     margin: 100px auto;
     width: 80%;
     background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/banner2.jpg);
@@ -273,7 +291,7 @@ h3{
     text-align: center;
     padding: 100px 0;
 }
-.about h1{
+.cta h1{
     color: #fff;
     margin-bottom: 40px;
     padding: 0;
