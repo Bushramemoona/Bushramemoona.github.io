@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofa List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,100;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="products">
+        <h1>Product List</h1>
+        <ul id="productList"></ul>
+    </div>
+
+    <script>
+        // Retrieve category from URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // Sample products for demonstration
+        const products = [
+            { name: "Brown Sofa", description: "Our contemporary sectional sofa is more than just a piece of furniture; it's a symbol of modern living at its finest. Crafted with precision and attention to detail, this sofa features a sleek silhouette and chic design that instantly elevates any room it occupies. The sectional configuration offers versatility, allowing you to customize your seating arrangement to perfectly suit your space and lifestyle. Whether you're hosting a lively gathering with friends or enjoying a quiet night in with family, this sofa provides ample seating for everyone to relax and unwind in style.What truly sets this sectional sofa apart is its unparalleled comfort. Each cushion is carefully crafted to provide optimal support and plushness, ensuring that you sink into luxurious relaxation every time you sit down. The high-quality upholstery adds a touch of luxury, while the sturdy construction guarantees years of enjoyment. This isn't just a sofa; it's an invitation to indulge in the finer things in life, a testament to your appreciation for both style and comfort.", imageSrc: "images/sofas1.jpg" },
+            { name: "Antique Sofa", description: "Our convertible sleeper sofa is the epitome of versatility and style, offering a seamless transition from daytime seating to nighttime sleeping. Perfect for modern living, this sofa effortlessly transforms from a sleek and stylish couch to a comfortable and inviting bed, ensuring that you're always prepared to accommodate guests or unexpected visitors. The contemporary design and durable construction make it a practical addition to any room, while the plush cushions provide the perfect combination of comfort and support.What sets this sleeper sofa apart is its ease of use and functionality. With just a few simple adjustments, it converts from one mode to the other, allowing you to make the most of your space without sacrificing style or convenience. Whether you're lounging during the day or sleeping at night, this sofa offers the ultimate in comfort and versatility. It's not just a piece of furniture; it's a solution to your everyday needs, a reflection of your modern lifestyle and appreciation for innovative design.", imageSrc: "images/sofas2.jpg" },
+            { name: "Italian Sofa", description: "Transport yourself to a bygone era with our Mid-Century Modern Sofa, a stunning homage to the iconic designs of yesteryears. Inspired by the sleek lines and timeless elegance of mid-century furniture, this sofa features tapered legs, button-tufted cushions, and a clean silhouette that exudes retro charm with a contemporary twist. It's not just a piece of furniture; it's a statement of refined taste and appreciation for classic design.What makes this sofa truly special is its versatility. Despite its vintage-inspired aesthetics, it seamlessly integrates into modern living spaces, adding a touch of nostalgia without feeling out of place. Its compact size makes it perfect for smaller rooms or apartments, while its durable construction ensures years of enjoyment. Whether you're hosting a sophisticated cocktail party or curling up with a good book on a lazy Sunday afternoon, our Mid-Century Modern Sofa provides the perfect backdrop for every occasion.", imageSrc: "images/sofas3.jpg" },
+            { name: "Luxury Sofa", description: "Indulge in the ultimate luxury and relaxation with our Leather Reclining Sofa, a masterpiece of craftsmanship and comfort. Crafted from premium materials, including supple leather upholstery and plush cushions, this sofa is designed to provide a first-class seating experience like no other. The reclining mechanism allows you to find your perfect position for lounging, napping, or simply unwinding after a long day, while the sleek design adds a touch of sophistication to any room.What sets this sofa apart is its attention to detail and commitment to quality. From the precision stitching to the reinforced frame, every aspect of this sofa is engineered for long-lasting durability and comfort. It's not just a place to sit; it's a sanctuary where you can escape the stresses of daily life and immerse yourself in luxurious relaxation. Whether you're watching your favorite movie or enjoying a glass of wine with friends, our Leather Reclining Sofa promises to elevate your lounging experience to new heights of comfort and style.", imageSrc: "images/sofas4.jpg" },
+            { name: "Club Sofa", description: "Embodying a classic yet timeless design, this sofa exudes sophistication and refinement. The rolled arms, button-tufted backrest, and nailhead trim detailing create an elegant and traditional look. The plush cushions provide exceptional comfort, making it an ideal spot for relax This sofa is a perfect blend of style and comfort, making it an excellent addition to both formal and casual living spaces. Whether you're hosting a social gathering or enjoying a quiet evening at home, this sofa offers a cozy and inviting seating option.", imageSrc: "images/sofas5.jpg" },
+            { name: "Office Sofa", description: "Crafted with utmost care and attention to detail, this sofa exudes elegance and sophistication. Its refined silhouette and tufted upholstery create a timeless aesthetic that adds a touch of luxury to any room. The generously padded cushions offer exceptional comfort, making it an inviting spot to unwind after a long day.Indulge in the plush comfort of this sofa as you sink into its deep seats and feel the softness envelop you. The tufted backrest adds an extra layer of elegance, while the gently sloping arms provide a cozy and supportive embrace. Whether you're hosting a formal gathering or simply relaxing with your loved ones, this sofa offers the perfect blend of style and coziness.Constructed with high-quality materials, this sofa is built to withstand the test of time. The solid frame ensures stability and durability, while the premium upholstery is both luxurious and easy to maintain. The classic design of this sofa makes it a versatile piece that seamlessly fits into any decor style, from traditional to contemporary. Add a few accent pillows or a cozy throw blanket to personalize the look and create a space that reflects your unique taste and personality.", imageSrc: "images/sofas6.jpg" },
+            { name: "Vectoria Sofa", description: "This sofa boasts a sleek and modern design that is perfect for contemporary living spaces. Its clean lines and minimalist appeal make it a versatile piece that can easily complement any interior decor. With its spacious seating area, this sofa offers ample room for relaxation and entertaining guests. Crafted with both style and functionality in mind, this sofa is designed to be the centerpiece of your living room. The plush cushions provide optimal comfort, while the sturdy frame ensures durability for years to come. Sink into the deep, padded seats and feel the stress melt away as you unwind after a long day. Whether you're watching your favorite TV show, hosting a game night with friends, or simply enjoying a quiet afternoon with a book, this sofa offers the perfect space to kick back and relax. In addition to its comfortable design, this sofa also offers practical features. The removable seat cushions make cleaning a breeze, while the solid construction guarantees long-lasting performance. The neutral upholstery allows for easy coordination with your existing furniture and decor, while also giving you the freedom to experiment with different color schemes and accessories.", imageSrc: "images/sofas7.jpg" },
+            { name: "Spanish Sofa", description: "This sofa showcases a unique blend of modern and rustic elements. Its sleek lines and contemporary design are juxtaposed with the warmth of wooden accents, creating a harmonious balance. The deep, cushioned seats offer exceptional comfort, while the neutral upholstery complements a wide range of interior styles. Make a statement with this sofa that effortlessly combines elegance and charm. The clean lines and streamlined silhouette give it a modern and sophisticated look, while the wooden accents add a touch of rustic appeal. The contrast between the sleek upholstery and the natural wood creates a visually pleasing aesthetic that is sure to catch the eye.Indulge in the comfort this sofa offers as you sink into its deep seats and feel the plush cushions envelop you. The generous padding provides optimal support, making it an ideal spot for lounging and relaxation. Whether you're hosting a movie night with friends or simply enjoying a quiet evening at home, this sofa offers the perfect balance of style and coziness.", imageSrc: "images/sofas8.jpg" },
+            { name: "Party Sofa", description: "Designed with versatility in mind, this sofa features a modular construction that allows for customizable seating arrangements. Its modular components can be easily rearranged to fit different spaces and preferences. The deep seats and plush cushions offer comfort and support, while the durable upholstery ensures long-lasting durability. This sofa adapts to various living environments, providing flexibility and style. Whether you have a small apartment or a spacious living room, this modular sofa can be configured to suit your needs. Create a cozy corner for relaxation or an expansive seating area for entertaining guests with this versatile and practical sofa.", imageSrc: "images/sofas9.jpg" },
+            { name: "Bold Blue", description: "This sofa embodies contemporary elegance with its sleek and sophisticated design. The clean lines and minimalist silhouette create a chic and understated look. The high-density foam cushions provide exceptional comfort and support, while the premium upholstery adds a touch of luxury. This sofa effortlessly combines style and coziness, making it a versatile piece that complements various interior styles. Whether you have a modern, minimalist home or a more eclectic decor, this sofa adds a touch of sophistication and comfort to your living space.", imageSrc: "images/sofas10.jpg" }
+            // Add more products here
+        ];
+
+        const productList = document.getElementById('productList');
+
+        // Display product list
+        products.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.className = 'product-card'; // Add product-card class here
+            
+            // Create container div for image with class imggg
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'imggg'; // Set class name to imggg
+            
+            const link = document.createElement('a');
+            link.href = `product_description.html?name=${encodeURIComponent(product.name)}&description=${encodeURIComponent(product.description)}&imageSrc=${encodeURIComponent(product.imageSrc)}`;
+            link.textContent = product.name;
+            
+            const image = document.createElement('img');
+            image.src = product.imageSrc;
+            image.alt = product.name;
+            
+            const description = document.createElement('p');
+            description.textContent = product.description;
+            
+            // Append image to image container
+            imageContainer.appendChild(image);
+            
+            // Append image container, link, and description to list item
+            listItem.appendChild(imageContainer);
+            listItem.appendChild(link);
+            
+            // Append list item to product list
+            productList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

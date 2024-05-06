@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,100;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="products">
+        <h1>Product List</h1>
+        <ul id="productList"></ul>
+    </div>
+
+    <script>
+        // Retrieve category from URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // Sample products for demonstration
+    
+        const products = [
+        { name: "American Dining", description: "This dining table showcases a sleek and modern design that is perfect for contemporary dining spaces. Its clean lines and minimalist aesthetic create a sophisticated and stylish look. Crafted from high-quality materials, this table is sturdy and durable, ensuring long-lasting use. The spacious tabletop provides ample space for family meals or hosting dinner parties. Whether you're enjoying a casual breakfast or hosting a formal dinner, this dining table offers the perfect setting for memorable gatherings. Its versatile design allows for easy coordination with a variety of dining chairs, making it a versatile choice for any decor style.", imageSrc: "images/dining1.jpg" },
+        { name: "Antique Dining", description: "Embracing a rustic charm, this dining table features a solid wood construction with a distressed finish. The natural imperfections and grain patterns of the wood add character and warmth to the space. The sturdy legs provide stability, while the spacious tabletop accommodates family and friends comfortably.Gather around this table and enjoy cozy meals with loved ones. Whether you're enjoying a casual weeknight dinner or hosting a festive holiday feast, this dining table creates a welcoming atmosphere. Pair it with matching wooden chairs for a complete rustic look or mix and match with different styles for an eclectic vibe.", imageSrc: "images/dining2.jpg" },
+        { name: "Italian Dining", description: "This dining table combines elegance and functionality with its sleek design and practical features. The tempered glass tabletop adds a touch of sophistication, while the metal frame offers stability and durability. The minimalist design makes it an ideal choice for modern and contemporary dining spaces.The transparent glass surface creates an illusion of space, making it perfect for smaller dining areas. Whether you're enjoying a romantic dinner for two or hosting an intimate gathering with friends, this table provides a stylish and functional setting. Pair it with upholstered chairs for a chic look or opt for metal chairs to enhance the modern aesthetic.", imageSrc: "images/dining3.jpg" },
+        { name: "Luxury Dining", description: "Inspired by industrial design, this dining table features a combination of wood and metal elements. The reclaimed wood tabletop showcases its natural grain and texture, while the metal legs add an industrial touch. The sturdy construction ensures durability, making it suitable for everyday use.Gather around this table and experience a unique dining experience. The combination of wood and metal creates a distinctive look that adds character to any space. Whether you have a loft-style apartment or a contemporary home, this dining table serves as a focal point, making a statement in your dining area.", imageSrc: "images/dining4.jpg" },
+        { name: "Dino Dining", description: "This dining table exudes timeless elegance with its classic design and fine craftsmanship. The solid wood construction and intricate details showcase its quality and durability. The rich finish adds warmth and sophistication to the space, creating a refined dining experience.Gather your loved ones around this table and create lasting memories. The spacious tabletop offers plenty of room for family meals, celebrations, and entertaining guests. Pair it with upholstered chairs for a luxurious touch or opt for wooden chairs for a traditional look. No matter the occasion, this dining table elevates your dining area with its timeless beauty.", imageSrc: "images/dining5.jpg" },
+        { name: "Josef Dining", description: "This dining table embraces a modern farmhouse aesthetic with its blend of rustic and contemporary elements. The distressed wood tabletop adds a touch of charm and character, while the sleek metal legs provide a modern twist. The combination of materials creates a unique and inviting look.Gather around this table and enjoy the warmth and comfort it brings. Whether you're having a casual brunch or hosting a dinner party, this dining table sets the stage for memorable gatherings. Pair it with upholstered chairs for a cozy feel or opt for metal chairs to enhance the modern farmhouse style.", imageSrc: "images/dining6.jpg" },
+        { name: "Vectoria Dining", description: "This dining table combines functionality and style with its extendable design. The versatile tabletop can be expanded to accommodate additional guests, making it perfect for both everyday meals and larger gatherings. The clean lines and simple silhouette create a contemporary and streamlined look.Experience the convenience and flexibility of this extendable dining table. It easily adapts to your needs, providing ample space for family and friends to dine together. Whether you have a small dining area or a spacious room, this table offers a practical solution while adding a touch of modern elegance.", imageSrc: "images/dining7.jpg" },
+        { name: "Spanish Dining", description: "Embodying a minimalist and Scandinavian-inspired design, this dining table features a sleek and understated look. The smooth tabletop and tapered legs create a clean and contemporary aesthetic. Crafted from durable materials, this table is built to withstand daily use.Gather around this table and enjoy its simplicity and versatility. The neutral color palette allows for easy coordination with different decor styles, while the compact size makes it ideal for smaller spaces. Whether you're enjoying a casual meal or engaging in lively conversations, this dining table provides a stylish and functional setting.", imageSrc: "images/dining8.jpg" },
+        { name: "Buzzers Dining", description: "This dining table showcases a unique blend of industrial and rustic elements. The solid wood tabletop with a distressed finish adds a rustic touch, while the metal legs and accents provide an industrial edge. The combination of materials creates a visually appealing and sturdy dining table.Gather around this table and experience its rugged charm. The spacious tabletop offers plenty of room for meals and gatherings, while the metal legs ensure stability and durability. Pair it with matching industrial-style chairs for a cohesive look or mix and match with different styles for an eclectic vibe.", imageSrc: "images/dining9.jpg" },
+        { name: "Bold Dining", description: "This dining table showcases a contemporary and elegant design with its sleek lines and glass tabletop. The transparent glass surface adds a touch of sophistication and creates a sense of openness in the dining area. The sturdy metal base provides stability and a modern aesthetic.Gather around this table and enjoy its stylish and airy ambiance. The spacious tabletop offers ample room for dining and entertaining, making it perfect for both everyday meals and special occasions. Whether you're hosting a dinner party or enjoying a quiet family meal, this dining table combines functionality and modern elegance to enhance your dining experience. Pair it with upholstered chairs for a luxurious touch or opt for transparent acrylic chairs to maintain the sense of lightness and transparency.", imageSrc: "images/dining10.jpg" }
+        
+            // Add more products here
+        ];
+
+        const productList = document.getElementById('productList');
+
+        // Display product list
+        products.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.className = 'product-card'; // Add product-card class here
+            
+            // Create container div for image with class imggg
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'imggg'; // Set class name to imggg
+            
+            const link = document.createElement('a');
+            link.href = `product_description.html?name=${encodeURIComponent(product.name)}&description=${encodeURIComponent(product.description)}&imageSrc=${encodeURIComponent(product.imageSrc)}`;
+            link.textContent = product.name;
+            
+            const image = document.createElement('img');
+            image.src = product.imageSrc;
+            image.alt = product.name;
+            
+            const description = document.createElement('p');
+            description.textContent = product.description;
+            
+            // Append image to image container
+            imageContainer.appendChild(image);
+            
+            // Append image container, link, and description to list item
+            listItem.appendChild(imageContainer);
+            listItem.appendChild(link);
+            
+            // Append list item to product list
+            productList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

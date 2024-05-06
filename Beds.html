@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beds List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,100;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="products">
+        <h1>Product List</h1>
+        <ul id="productList"></ul>
+    </div>
+
+    <script>
+        // Retrieve category from URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // Sample products for demonstration
+        const products = [
+            { name: "Normal Bed", description: "Dive into a world of unparalleled comfort and support with this exquisite luxury memory foam bed. Engineered to deliver a sublime sleeping experience, it's crafted with premium materials and innovative design. The hallmark of this bed is its high-quality memory foam, renowned for its ability to contour to your body's unique shape, providing customized support and pressure relief. Say goodbye to tossing and turning as you sink into the plush surface, enveloped in a cocoon of tranquility. Each night, this bed cradles you in blissful comfort, helping you drift off to sleep faster and stay asleep longer. Wake up feeling refreshed and rejuvenated, ready to tackle the day ahead with vigor and vitality. Whether you're a side sleeper, back sleeper, or stomach sleeper, this bed adapts to your preferred sleeping position, ensuring optimal alignment and comfort. Invest in your well-being and upgrade to this luxury memory foam bed today for a sleep experience like no other.", imageSrc: "images/bed1.jpg" },
+            { name: "Double Bed", description: "Take your sleep to new heights of comfort and customization with this revolutionary adjustable base bed. Designed to cater to your individual preferences, it puts you in control of your sleep environment like never before. Whether you're lounging, reading, or sleeping, this bed adapts to your needs with the touch of a button. Elevate your head to alleviate snoring and acid reflux, or raise your legs to relieve pressure on your lower back and improve circulation. With infinite adjustable positions, you can find the perfect angle for ultimate relaxation and rejuvenation. The ergonomic design of this bed promotes proper spinal alignment, reducing discomfort and ensuring a restful night's sleep. Say goodbye to restless nights and hello to blissful slumber as you discover the unparalleled comfort of this adjustable base bed. Plus, with its sleek and modern aesthetics, it enhances the look of any bedroom, adding a touch of sophistication to your sleep space. Upgrade to the future of sleep technology and experience the difference for yourself with this adjustable base bed.", imageSrc: "images/bed2.jpg" },
+            { name: "Italian Bed", description: "Maximize both style and functionality in your bedroom with this versatile platform bed featuring ample storage space. Designed for those who appreciate clean lines and practicality, this bed combines form and function seamlessly. The platform base offers sturdy support for your mattress while eliminating the need for a bulky box spring, creating a sleek and modern aesthetic. What sets this bed apart is its integrated storage drawers, strategically placed underneath the mattress platform to utilize every inch of space effectively. Perfect for storing extra linens, pillows, or seasonal clothing, these drawers keep your bedroom clutter-free and organized. The minimalist design of this platform bed lends itself well to various decor styles, from contemporary to transitional, making it a versatile choice for any bedroom. Enjoy the convenience of extra storage without sacrificing style with this platform bed, a practical solution for modern living.", imageSrc: "images/bed3.jpg" },
+            { name: "American Bed", description: "Experience the perfect balance of comfort and support with this firm support bed, designed to provide a restorative night's sleep. Crafted with premium materials and expert craftsmanship, this bed offers a supportive surface that helps alleviate aches and pains. The firmness level of this bed is ideal for those who prefer a more solid sleeping surface, promoting proper spinal alignment and reducing pressure points. Say goodbye to waking up with a sore back or stiff muscles as you sink into the supportive layers of this bed each night. The durable construction ensures long-lasting performance, maintaining its integrity for years to come. Whether you're a back sleeper, side sleeper, or stomach sleeper, this bed provides the firm support you need for a comfortable and rejuvenating sleep experience. Invest in your well-being and upgrade to this firm support bed today for a restful night's sleep you deserve.", imageSrc: "images/bed4.jpg" },
+            { name: "Australian Bed", description: "Embrace the unparalleled comfort and eco-friendly benefits of this natural latex bed, crafted with sustainability and comfort in mind. Made from organic latex derived from the sap of rubber trees, this bed offers a luxurious sleeping surface that's both hypoallergenic and breathable. Say goodbye to allergens and toxins as you rest easy on this natural latex bed, knowing that you're sleeping on a healthy and environmentally conscious surface. Unlike synthetic materials, natural latex conforms to your body's contours without sinking, providing responsive support and pressure relief. Experience the buoyant feel of latex as it gently cradles you to sleep, promoting proper spinal alignment and reducing tossing and turning. With its exceptional durability, this bed maintains its shape and resilience for years to come, ensuring a restful night's sleep night after night. Upgrade to the ultimate in comfort and sustainability with this natural latex bed, a luxurious investment in your well-being and the planet.", imageSrc: "images/bed5.jpg" },
+            { name: "Antique Bed", description: "Indulge in the lap of luxury with this plush pillow top bed, designed to provide an unparalleled sleeping experience. Crafted with the finest materials and attention to detail, this bed combines sumptuous comfort with lasting support. The hallmark of this bed is its plush pillow top layer, featuring a cloud-like surface that cradles you in exquisite softness. Sink into a world of relaxation as you drift off to sleep, enveloped in the plush embrace of this decadent mattress. Beneath the luxurious pillow top lies a supportive core that maintains proper spinal alignment and reduces pressure points, ensuring a restful night's sleep. Wake up feeling refreshed and rejuvenated, ready to tackle the day ahead with renewed energy and vitality. With its timeless design and superior craftsmanship, this plush pillow top bed is the epitome of comfort and elegance. Treat yourself to the luxury you deserve and upgrade to this indulgent bed today.", imageSrc: "images/bed6.jpg" },
+            { name: "Victoria Bed", description: "Elevate your bedroom aesthetics with the sleek and modern design of this metal frame bed, a stylish addition to any sleep space. Crafted with durable metal construction, this bed offers both stability and sophistication in equal measure. The minimalist silhouette of the frame creates a clean and contemporary look that complements a variety of decor styles. Whether your style is industrial chic or urban loft, this metal frame bed adds a touch of urban flair to your bedroom. The open design of the frame allows for ample airflow around your mattress, promoting a cooler and more comfortable sleep environment. Plus, with its sturdy support system, this bed ensures a restful night's sleep every time you lay down. Say goodbye to creaky wooden bed frames and hello to the sleek sophistication of this metal frame bed. Upgrade your bedroom with a touch of modern elegance and enjoy the perfect blend of style and comfort.", imageSrc: "images/bed7.jpg" },
+            { name: "Spanish Bed", description: "Transform your bedroom into a luxurious retreat with this tufted upholstered bed, a timeless centerpiece that exudes elegance and sophistication. Crafted with meticulous attention to detail, this bed features a plush upholstered headboard adorned with exquisite tufting for added texture and visual interest. Sink into the padded headboard as you unwind after a long day, enjoying the comfort and support it provides for late-night reading or lounging. The upholstered frame adds a touch of softness to your sleep space while the sturdy construction ensures long-lasting durability. Whether your decor style is classic elegance or modern chic, this tufted upholstered bed effortlessly elevates the ambiance of your bedroom. Treat yourself to the luxury you deserve and upgrade to this timeless piece today.", imageSrc: "images/bed8.jpg" },
+            { name: "Brown Bed", description: "Make the most of your space with this compact folding bed, a versatile solution for small bedrooms, guest rooms, or multi-functional spaces. Designed for convenience and comfort, this bed folds up easily for storage when not in use, freeing up valuable floor space for other activities. Perfect for accommodating overnight guests or unexpected visitors, this folding bed provides a comfortable sleeping surface whenever you need it. The sturdy metal frame ensures stability and support, while the folding mechanism allows for quick and effortless setup. Say goodbye to bulky air mattresses and hello to the convenience of this compact folding bed. Upgrade your guest accommodations with a space-saving solution that doesn't compromise on comfort.", imageSrc: "images/bed9.jpg" },
+            { name: "Luxus Bed", description: "Create a romantic oasis in your bedroom with this canopy bed frame, a stunning centerpiece that evokes timeless elegance and luxury. Crafted with sturdy metal construction, this bed frame features sleek lines and a minimalist design that complements a variety of decor styles. The canopy frame adds an air of drama and sophistication to your sleep space, transforming it into a dreamy sanctuary where you can escape the stresses of the day. Whether you're curling up with a good book or enjoying breakfast in bed, the canopy provides a cozy and intimate atmosphere that enhances your relaxation experience. With its durable construction and timeless appeal, this canopy bed frame is sure to be the focal point of your bedroom for years to come. Treat yourself to the luxury you deserve and upgrade to this elegant piece today.", imageSrc: "images/bed10.jpg" }
+            // Add more products here
+        ];
+
+        const productList = document.getElementById('productList');
+
+        // Display product list
+        products.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.className = 'product-card'; // Add product-card class here
+            
+            // Create container div for image with class imggg
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'imggg'; // Set class name to imggg
+            
+            const link = document.createElement('a');
+            link.href = `product_description.html?name=${encodeURIComponent(product.name)}&description=${encodeURIComponent(product.description)}&imageSrc=${encodeURIComponent(product.imageSrc)}`;
+            link.textContent = product.name;
+            
+            const image = document.createElement('img');
+            image.src = product.imageSrc;
+            image.alt = product.name;
+            
+            const description = document.createElement('p');
+            description.textContent = product.description;
+            
+            // Append image to image container
+            imageContainer.appendChild(image);
+            
+            // Append image container, link, and description to list item
+            listItem.appendChild(imageContainer);
+            listItem.appendChild(link);
+            
+            // Append list item to product list
+            productList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
