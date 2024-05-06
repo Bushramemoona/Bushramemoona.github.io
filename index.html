@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EverWood Creations</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="products.html">
-    <link rel="stylesheet" href="portfolio.html">
-    <link rel="stylesheet" href="services.html">
-    <link rel="stylesheet" href="range.html">
-    <link rel="stylesheet" href="about.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,100;1,400&display=swap" rel="stylesheet">
@@ -22,12 +17,11 @@
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
-                    <li><a href="">HOME</a></li>
-                    <li><a href="products.html">PRODUCTS</a></li>
-                    <li><a href="range.html">RANGE</a></li>
-                    <li><a href="services.html">SERVICES</a></li>
-                    <li><a href="portfolio.html">PORTFOLIO</a></li>
-                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#products">PRODUCTS</a></li>
+                    <li><a href="#range">RANGE</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
@@ -40,7 +34,7 @@
 
     </section>
 
-    <section class="course">
+    <section class="products" id="products">
         <h1>Specialized Products</h1>
         <p>These items combine functionality with aesthetics, catering to various customer needs and preferences.</p>
         <div class="row">
@@ -59,32 +53,38 @@
         </div>
     </section>
 
-    <section class="campus">
+    <section class="range" id="range">
         <h1>Our Range</h1>
         <p>We provide a variety of furniture.</p>
         <div class="row">
             <div class="campus-col">
                 <img src="images/bed.jpg">
                 <div class="layer">
+                    <a href="Beds.html">
                     <h3>Beds</h3>
+                    </a>
                 </div>
             </div>
             <div class="campus-col">
                 <img src="images/sofas">
                 <div class="layer">
+                    <a href="Sofas.html">
                     <h3>Sofas</h3>
+                </a>
                 </div>
             </div>
             <div class="campus-col">
                 <img src="images/tables">
                 <div class="layer">
+                    <a href="Dinings.html">
                     <h3>Dining Tables</h3>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="facilities">
+    <section class="services" id="services">
         <h1>Our Services</h1>
         <p>We provide different services along with our long-lasting furniture.</p>
         <div class="row">
@@ -123,28 +123,7 @@
         </div>
     </section>
 
-    <section>
-        <div class="developer">
-            <img src="images/anas.jpeg" alt="Developer 1">
-            <h2>Muhammad Anas</h2>
-            <p>Home and Products sections are created by Muhammad Anas. <br>2021-BBIT-101</p>
-        </div>
-
-        <div class="developer">
-            <img src="images/mahim.jpeg" alt="Developer 2">
-            <h2>Mahim Irfan Butt</h2>
-            <p>Range and Services sections are created by Mahim Irfan Butt. <br>2021-BBIT-54</p>
-        </div>
-
-        <div class="developer">
-            <img src="images/mona.jpeg" alt="Developer 3">
-            <h2>Bushra Memoona</h2>
-            <p>Portfolio and About Us sections are created by Bushra Memoona. <br>2021-BBIT-65</p>
-        </div>
-    </section>
-    
-
-    <section class="cta">
+    <section class="about" id="about">
         <h1>Buy Furniture Online From <br>All Over The Country.</h1>
         <a href="" class="hero-btn">Contact Us</a>
     </section>
@@ -176,4 +155,3 @@
 
 </body>
 </html>
-hello
